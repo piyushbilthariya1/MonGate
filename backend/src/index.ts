@@ -41,7 +41,7 @@ const start = async () => {
     const port = Number(process.env.PORT) || 3000;
     await fastify.listen({ port, host: "0.0.0.0" });
     
-    console.log(`🚀 AntiGravity API Bridge is live on http://localhost:${port}`);
+    console.log(`🚀 MonGate API Bridge is live on http://localhost:${port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

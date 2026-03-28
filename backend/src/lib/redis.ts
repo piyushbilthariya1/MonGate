@@ -6,8 +6,8 @@ dotenv.config();
 const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
 export const redis = new Redis(redisUrl);
 
-// Key prefixing for AntiGravity
-const PREFIX = "antigravity:";
+// Key prefixing for MonGate
+const PREFIX = "mongate:";
 
 export const redisKeys = {
   userCredits: (userId: string) => `${PREFIX}credits:${userId}`,

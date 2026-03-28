@@ -1,5 +1,5 @@
 {
-  "name": "antigravity-api-bridge",
+  "name": "mongate-bridge",
   "version": "0.1.0",
   "main": "dist/index.js",
   "scripts": {
