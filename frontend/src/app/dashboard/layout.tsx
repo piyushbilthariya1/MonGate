@@ -1,17 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { useAuth } from '@/hooks/use-auth';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Loader2, Play } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function DashboardContent({ children }: { children: React.ReactNode }) {
   const { isConnected, isAuthenticated, authenticate, address } = useAuth();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const router = useRouter();
@@ -104,5 +100,21 @@ export default function DashboardLayout({
         </div>
       </main>
     </div>
+  );
+}
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#020202]">
+        <Loader2 className="w-8 h-8 animate-spin text-monad-purple" />
+      </div>
+    }>
+      <DashboardContent>{children}</DashboardContent>
+    </Suspense>
   );
 }
