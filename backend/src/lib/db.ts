@@ -3,6 +3,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+if (!process.env.DATABASE_URL) {
+  console.error("❌ ERROR: DATABASE_URL is not defined in .env");
+  process.exit(1);
+}
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
