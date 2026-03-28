@@ -1,5 +1,5 @@
 /**
- * AntiGravity API Library: Standardized fetcher for MonKey Vault backend.
+ * MonGate API Library: Standardized fetcher for MonGate backend.
  */
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3000';
 

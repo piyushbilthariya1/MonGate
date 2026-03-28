@@ -12,6 +12,19 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --animate-fade-in-up: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 :root {
@@ -31,4 +44,50 @@ body {
   * {
     border-color: rgba(255, 255, 255, 0.1);
   }
+}
+
+/* Custom Scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(131, 110, 251, 0.2) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(131, 110, 251, 0.2);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(131, 110, 251, 0.4);
+}
+
+/* Range Slider Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  height: 6px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #836EFB;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(131, 110, 251, 0.5);
+  border: 2px solid #030303;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #836EFB;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(131, 110, 251, 0.5);
+  border: 2px solid #030303;
 }

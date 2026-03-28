@@ -17,7 +17,7 @@ export function useAuth() {
       // 1. Get a unique nonce from backend (or mock for now)
       const nonce = await getAuthNonce(address);
       const timestamp = new Date().toISOString();
-      const message = `Welcome to MonKey Vault! Sign this message to verify your wallet ownership.\n\nNonce: ${nonce}\nTimestamp: ${timestamp}`;
+      const message = `Welcome to MonGate! Sign this message to verify your wallet ownership.\n\nNonce: ${nonce}\nTimestamp: ${timestamp}`;
 
       // 2. Request signature
       const signature = await signMessageAsync({ message });

@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  BarChart3, 
-  Key, 
-  Wallet, 
+  Layout, 
+  Database, 
+  Activity, 
   Settings, 
   Menu, 
   X, 
@@ -17,31 +17,29 @@ import {
 import { useAuth } from '@/hooks/use-auth';
 
 const NAV_ITEMS = [
-  { name: 'Overview', href: '/dashboard/consumer', icon: BarChart3 },
-  { name: 'API Keys', href: '/dashboard/keys', icon: Key },
-  { name: 'Staking', href: '/dashboard/staker', icon: Wallet },
+  { name: 'Overview', href: '/dashboard/consumer', icon: Layout },
+  { name: 'API Keys', href: '/dashboard/keys', icon: Database },
+  { name: 'Staking', href: '/dashboard/staker', icon: Activity },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isDemo = searchParams.get('demo') === 'true';
   const { address, logout } = useAuth();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const NavContent = () => (
     <div className="flex flex-col h-full bg-obsidian border-r border-white/5 p-6">
-      <div className="flex items-center gap-3 mb-12">
-        <span className="text-2xl">🐒🗝️</span>
-        <span className="text-xl font-bold text-white">MonKey Vault</span>
-      </div>
-
-      <nav className="flex-grow space-y-2">
+      <nav className="flex-grow space-y-2 mt-4">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
+          const finalHref = isDemo ? `${item.href}?demo=true` : item.href;
           return (
             <Link
               key={item.name}
-              href={item.href}
+              href={finalHref}
               onClick={() => setIsMobileOpen(false)}
               className={`group flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
                 isActive 
@@ -89,7 +87,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-72 h-screen sticky top-0">
+      <aside className="hidden lg:block w-72 sticky top-[73px] h-[calc(100vh-73px)]">
         <NavContent />
       </aside>
 
